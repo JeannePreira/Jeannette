@@ -63,6 +63,7 @@ if(isset($_POST['valider'])) {
     if (!(empty($_POST['nombre']))) {
         if ((preg_match("#[^0-9]#", $_POST['nombre'])) || ($_POST['nombre'] < 10000)) {
             echo "<h2>Donner un nombre entier supérieur à 10000</h2>";
+            exit();
             } else {
             $n = $_POST['nombre'];
             $som = 0;
@@ -114,7 +115,8 @@ if(isset($_POST['valider'])) {
         }
         }
     else{
-            echo 'Ce champ est obligatoire!';
+            echo '<h2>Ce champ est obligatoire!</h2>';
+            exit();
         }
 }
 if (isset($_SESSION['inf']) || isset($_GET['Pinf'])) {
