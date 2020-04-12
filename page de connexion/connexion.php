@@ -22,7 +22,7 @@
     <form action="" method="post">
         <div class="ine"> 
                     <div class="name">
-                        <input type="text" name="login" placeholder="Login">
+                        <input type="text" name="login"  value="<?= @$_POST['login'] ?>" placeholder="Login">
                     </div>
                     <div class="image">
                         <img src="icones/icone-user.png" alt="user">                        
@@ -30,7 +30,7 @@
         </div>
         <div class="motPasse"> 
                     <div class="pass">
-                        <input type="password" name="Mdp" placeholder="Mot de pass">
+                        <input type="password" name="password"  value="<?= @$_POST['password'] ?>" placeholder="Mot de pass">
                     </div>
                     <div class="image">
                         <img src="icones/icone-password.png" alt="password " >
@@ -38,7 +38,7 @@
         </div>
         <div class="validation">         
                     <div class="ok">
-                        <input type="submit" value="Connexion">
+                        <input type="submit" name="Connexion" value="Connexion">
                     </div>
                     <div class="inscrip">
                         <a href="inscription.php">S'inscrire pour jouer?</a>
@@ -49,39 +49,34 @@
 </body>
 </html>
 <?php
-			$user_Login="jeanne";
-      $user_Mdp="soy-unica";
-      $admin_Login="admin";
-      $admin_Mdp="admin";
 
-            if(isset($_POST['login']) && isset($_POST['Mdp'])){
-                $pseudo=$_POST['login'];
-                $mdp=$_POST['Mdp'];
+            if(isset($_POST['Connexion'])){
+                $fichier='page.json';
+                $js=file_get_contents($fichier);
+                $js=json_decode($js);
 
-                if ($pseudo ==$user_Login && $mdp ==$user_Mdp){
-                  session_start ();
-                  $_SESSION['login'] = $pseudo;
-                  $_SESSION['mdp'] = $mdp;
-                   
-                  
-                  // on redirige notre visiteur vers une page de notre section membre
-                  header ("location: interfaceJoueur.php");
+                 if(empty($_POST['login']) || empty($_POST['password'])){
+
+                        echo "<p style='color:red'>Ce champs est obligatoire</p>";
 
                 }
+                else{
 
-                elseif($pseudo ==$admin_Login && $mdp ==$admin_Mdp){
-                    session_start ();
-                  $_SESSION['login'] = $pseudo;
-                  $_SESSION['mdp'] = $mdp;
+                            if(($_POST['login']==$js [0]->login) &&  ($_POST['password']==$js [0]->password)){
 
-                  // on redirige notre visiteur vers une page de notre section membre
-                  header ("location: accueilAdmin.php");
+                                    header ("location: interfaceJoueur.php");//redirection
 
-                  } 
-                  else{
-                      echo"VEILLEZ VOUS INSCRIRE!";
-                  }
-            
+                            }else if(($_POST['login']==$js [1]->login) && ($_POST['password']==$js [1]->password)){
+
+                                    header ("location: accueilAdmin.php");////redirection
+
+                            }else{
+
+                                    echo "<p style='color:red'>login ou mot de passe incorrect</p>";//message d'erreur
+
+                                }
+                }
+                    
             }
 
 

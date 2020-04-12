@@ -1,0 +1,13 @@
+[
+    {
+        "login":"Gabriel",
+        "password":"brother",
+        "role":"joueur"
+    },
+    {
+        
+        "login":"Jeannetta",
+        "password":"soy-unica",
+        "role":"Admin"
+    }
+]
