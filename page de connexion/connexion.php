@@ -22,7 +22,8 @@
     <form action="" method="post">
         <div class="ine"> 
                     <div class="name">
-                        <input type="text" name="login"  value="<?= @$_POST['login'] ?>" placeholder="Login">
+                        <input type="text" class="form_control" id='login' name="login"  value="<?= @$_POST['login'] ?>" placeholder="Login">
+                        <span id='name_m'></span>
                     </div>
                     <div class="image">
                         <img src="icones/icone-user.png" alt="user">                        
@@ -38,7 +39,7 @@
         </div>
         <div class="validation">         
                     <div class="ok">
-                        <input type="submit" name="Connexion" value="Connexion">
+                        <input type="submit" name="Connexion" id="boutton_envoi" value="Connexion">
                     </div>
                     <div class="inscrip">
                         <a href="inscription.php">S'inscrire pour jouer?</a>
@@ -49,7 +50,7 @@
 </body>
 </html>
 <?php
-
+session_start();
             if(isset($_POST['Connexion'])){
                 $fichier='page.json';
                 $js=file_get_contents($fichier);
@@ -63,11 +64,13 @@
                 else{
 
                             if(($_POST['login']==$js [0]->login) &&  ($_POST['password']==$js [0]->password)){
-
+                                $_SESSION["prenom"]=$js [0]->prenom;
+                                $_SESSION["nom"]=$js [0]->nom;
                                     header ("location: interfaceJoueur.php");//redirection
 
                             }else if(($_POST['login']==$js [1]->login) && ($_POST['password']==$js [1]->password)){
-
+                                $_SESSION["prenom"]=$js [1]->prenom;
+                                $_SESSION["nom"]=$js [1]->nom;
                                     header ("location: accueilAdmin.php");////redirection
 
                             }else{

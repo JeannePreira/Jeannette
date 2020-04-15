@@ -1,13 +1,18 @@
 [
     {
-        "login":"Gabriel",
-        "password":"brother",
-        "role":"joueur"
+        
+        "prenom":"Gabriel",
+        "login":"Gaby",
+        "password":"gab07",
+        "profil":"joueur",
+        "image":"gab.jpj"
     },
     {
-        
+        "nom":"Preira",
+        "prenom":"Jeannette",
         "login":"Jeannetta",
         "password":"soy-unica",
-        "role":"Admin"
+        "profil":"admin",
+        "image":"jeanne.jpj"
     }
 ]
