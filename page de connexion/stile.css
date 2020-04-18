@@ -1,12 +1,17 @@
-.connecte{ 
-    width: 50%;
+
+      
+  body{
+    width: 100%;
+  }
+.container{ 
+    width: 40%;
     height:280px;
-    margin: 50px 0px 0px 200px; 
+    margin: 50px 0px 0px 400px; 
     border-radius: 5px 5px 5px 5px;
-    background-color: white;  
+    background-color: rgb(241, 235, 235);  
     padding: 0px 0px 10px 0px; 
 }
-.connecte p{
+ p{
     width: initial;
     height: 20px;
     background-color: rgb(116, 248, 248);
@@ -35,7 +40,7 @@
 .image img{
     height:40px;
     border-radius: 5px 5px 5px 5px;
-    margin:-67px 5px 5px 0px; 
+    margin:-67px 35px 5px 0px; 
     float: right;
 }
 .ok input{
@@ -53,8 +58,4 @@
     color: black;
     float:right;    
 }
-/*responsivité*/
-
-
-
 

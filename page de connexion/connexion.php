@@ -5,48 +5,39 @@
     <link rel="stylesheet" href="stile.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
     <script src="main.js"></script>
 </head>
 <body>
-    <div class="contenue">  
+     
         <?php
         include "header.php";
         ?>  
-        <div class="connecte">
-                <div class="login">
-                      <p>Login Form</p>
+        
+    <div class="container">
+        <div class="login"><p>Login Form</p></div>
+        <div class="form-group">    
+            <form action="" method="post">
+            
+                <div class="name">
+                    <input type="text"  id='login' name="login"  value="<?= @$_POST['login'] ?>" placeholder="Login">
+                    <div class="image"><img src="icones/ic-login.png" alt="user"></div>
                 </div>
-        <div> 
-    <form action="" method="post">
-        <div class="ine"> 
-                    <div class="name">
-                        <input type="text" class="form_control" id='login' name="login"  value="<?= @$_POST['login'] ?>" placeholder="Login">
-                        <span id='name_m'></span>
-                    </div>
-                    <div class="image">
-                        <img src="icones/icone-user.png" alt="user">                        
-                    </div>
+            
+                <div class="pass">
+                    <input type="password" name="password"  value="<?= @$_POST['password'] ?>" placeholder="Mot de pass">
+                    <div class="image"><img src="icones/ic-password.png" alt="password " ></div>
+                </div>
+            
+                <div class="ok">
+                    <input type="submit" name="Connexion" id="boutton_envoi" value="Connexion">
+                    <div class="inscrip"><a href="inscription.php">S'inscrire pour jouer?</a></div>
+                </div>
+
+            </form>
         </div>
-        <div class="motPasse"> 
-                    <div class="pass">
-                        <input type="password" name="password"  value="<?= @$_POST['password'] ?>" placeholder="Mot de pass">
-                    </div>
-                    <div class="image">
-                        <img src="icones/icone-password.png" alt="password " >
-                    </div>
-        </div>
-        <div class="validation">         
-                    <div class="ok">
-                        <input type="submit" name="Connexion" id="boutton_envoi" value="Connexion">
-                    </div>
-                    <div class="inscrip">
-                        <a href="inscription.php">S'inscrire pour jouer?</a>
-                    </div>
-        </div>
-    </form>
-</div> 
+    </div> 
 </body>
 </html>
 <?php
