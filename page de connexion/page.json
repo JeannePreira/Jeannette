@@ -1,18 +1,1 @@
-[
-    {
-        
-        "prenom":"Gabriel",
-        "login":"Gaby",
-        "password":"gab07",
-        "profil":"joueur",
-        "image":"gab.jpj"
-    },
-    {
-        "nom":"Preira",
-        "prenom":"Jeannette",
-        "login":"Jeannetta",
-        "password":"soy-unica",
-        "profil":"admin",
-        "image":"jeanne.jpj"
-    }
-]
+[{"profil":"joueur","prenom":"gabriel","nom":"preira","login":"gaby","password":"1458","photo":"gab.jpg"},{"profil":"admin","prenom":"jeannette","nom":"preira","login":"jeanne","password":"1234","photo":"kala.jpg"},{"prenom":"Joseline","nom":"PINA","login":"josi","password":"123","profil":"joueur","photo":"S.jpg","score":"0"},{"prenom":"Joseline","nom":"PINA","login":"jo","password":"147","profil":"joueur","photo":"gab.jpg","score":"0"},{"prenom":"Modou","nom":"SARA","login":"momo","password":"777","profil":"joueur","photo":"kala.jpg","score":"0"},{"prenom":"Rene","nom":"PREIRA","login":"re","password":"111","profil":"joueur","photo":"gab.jpg","score":"0"},{"prenom":"Aimee","nom":"PINA","login":"bb","password":"0000","profil":"joueur","photo":"avatar.png","score":"0"}]

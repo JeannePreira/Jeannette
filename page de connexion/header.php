@@ -6,7 +6,7 @@
     <style>
 body{
     width:initial;
-    background-image: url('icones/img-bg.jpg');
+    background-image: url('images/img-bg.jpg');
     background-repeat:no-repeat;
     background-size:100%;
      
@@ -37,7 +37,7 @@ img{
 </head>
 <body>
 <div class="header">
-            <div class="logo"><img src="icones/logo.png" alt="logo"></div>
+            <div class="logo"><img src="images/logo-QuizzSA.png" alt="logo"></div>
             <div class="titre"><h2>Le plaisir de jouer</h2></div>
         </div>
 </body>
