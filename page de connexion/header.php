@@ -14,7 +14,7 @@ body{
 .header{
     width: 100%;
     height: 50px;
-    background-color:#042425 ;
+    background-color:#042425;
  
 
 }
@@ -24,7 +24,7 @@ img{
     padding: 3px;
     float: left;
 }
- h2{
+ .titre h2{
     color: white;
     position:absolute;
     margin-top:15px;
