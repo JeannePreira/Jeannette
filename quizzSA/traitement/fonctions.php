@@ -1,6 +1,45 @@
 <?php
 
- 
+    function connexion($login, $pwd)//tester si l'utilisateur est connecter
+    {
+        $users= getData();
+        foreach ($users as $key => $user){
+            
+            if ($user["login"]===$login && $user["password"]===$pwd){
+                $_SESSION['user']=$user;
+                $_SESSION['statut']="login";
+               
+                if ($user["profil"]==="admin"){
+                    return "accueil";
+                }else{
+                    return "jeux";
+                }
+            }
+        }
+        return "error";
+    }
+
+
+    function deconnexion(){
+        unset($_SESSION['user']);//suprimer l'existance d'une variable
+        unset($_SESSION['statut']);
+        session_destroy();
+    }
+
+    function is_connect(){
+        if (!isset($_SESSION['statut'])){
+            header("location:index.php");
+        }
+    }
+
+    //fonction qui charge les fichiers json
+    function getData($file="utilisateur"){
+        $data= file_get_contents('./data/'.$file.'.json');//charger le data ki est en json
+        $data= json_decode($data, true);//transformer un json en tableau
+        return $data;//un tableau pour vérifier la connexion
+    }
+  
+
 
     function is_lower($char){
         return ($char>='a' && $char<='z');

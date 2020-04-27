@@ -1,49 +1,9 @@
-<?php
-session_start();
-if (!isset($_SESSION['prenom'])){
-    header("Location: connexion.php");
-    exit;
-    }
-
-?>
-
-    <?php
-    include "header.php"
-    ?>
-    
-
-        <div class="up">
-            <div class="h3"> <h3>CREER ET PARAMETRER VOS QUIZZ</h3></div>
-           <div class="disconnexion"><a href="deconnexion.php">Déconnexion</a></div> 
-        </div>
-        <div class=container>
-        <div class="big-bloc"> 
-            <div class="left">
-                        <div class="profil"><img src="icones/img5.jpg"></div>
-                    
-                        <div class="bloc">
-                            <a href="listeQuizz.php">Listes Questions</a>
-                            <img src="icones/ic-liste-active.png" alt="liste">
-                        </div>
-                        <div class="bloc">
-                            <a href="compeAdmin.php">Créer Admin</a>
-                            <img src="icones/ic-ajout.png" alt="admin">
-                        </div>
-                        <div class="bloc">
-                            <a href="listeJoeurs.php">Listes Joueurs</a>
-                            <img src="icones/ic-liste.png" alt="liste">
-                        </div>
-                        <div class="bloc">
-                            <a href="creerQizz.php">Créer Question</a>
-                            <img src="icones/ic-ajout-active.png" alt="liste">
-                        </div>   
-            </div>
-
+         
             <div class="right">
                 <h4>LISTE DES JOUEURS PAR SCORE</h4>
                 <div class="bloc-liste">
                     <?php
-                        $js=file_get_contents('page.json');
+                        $js=file_get_contents('./data/utilisateur.json');
                         $js=json_decode($js,true);
 
                         foreach($js as $value){
@@ -60,26 +20,29 @@ if (!isset($_SESSION['prenom'])){
 
                         array_multisort($score, SORT_DESC, $joueur);
 
-                        foreach($joueur as $key=>$value){
+                    
+                    $max=$_GET['page']*1;
+                    $min=$max-1;
+                    for($i=$min;$i<$max;$i++){
+                        
+                        echo $js[$i]["nom"];
+                        echo $js[$i]["prenom"];
+                        echo $js[$i]["score"];
+                    }
+                    $a=$_GET['page']+1;
+                echo"<a href='index.php?lien=accueil&menu=listeJoueurs.php?page=$a'><button>suivant</button></a>";
 
-                                ?>
-                                <div class="affiche-nom-prenom">
-                                <span class="nom-prenom">
-                                    <?php echo $value['prenom'];?>
-                                    &nbsp;
-                                    <?php echo $value['nom'];?>
-                                </span>
-                                <span class="score-joueur">
-                                    <?php echo $value['score'];?>
-                                </span>
-                                
-                                </div>
-                        <?php } ?>
+?>
+                           
 
             
              </div>
         </div>  
     </div>  
+
+
+
+
 
     
     

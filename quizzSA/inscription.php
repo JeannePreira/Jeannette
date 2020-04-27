@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+
     require_once('fonctions.php');
     $msg_erreur="";
 
@@ -335,7 +335,7 @@ include 'header.php';
     margin-top: 5%;
     left: 7.5%;
     position: relative;
-    background-color: white;
+    background-color: red
     border-radius:5px 5px 5px 5px;
 }
 

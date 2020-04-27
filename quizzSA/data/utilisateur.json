@@ -1,0 +1,20 @@
+[
+    {
+        "nom":"admin",
+        "prenom":"admin",
+        "login":"admin",
+        "password":"admin",
+        "profil":"admin",
+        "photo":"/quizzSA/public/images/admin.png",
+        "score":"254"
+    },
+    {
+        "nom":"joueur",
+        "prenom":"joueur",
+        "login":"joueur",
+        "password":"joueur",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/joueur.jpg",
+        "score":"2544"
+    }
+]

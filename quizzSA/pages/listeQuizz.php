@@ -1,56 +1,8 @@
-<?php
-session_start();
-if (!isset($_SESSION['prenom'])){
-    header("Location: connexion.php");
-    exit;
-    }
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="mini.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <?php
-    include "header.php"
-    ?>
-    
-
-        <div class="up">
-            <div class="h3"> <h3>CREER ET PARAMETRER VOS QUIZZ</h3></div>
-           <div class="disconnexion"><a href="deconnexion.php">Déconnexion</a></div> 
-        </div>
 
 
-        <div class=container>
-        <div class="big-bloc"> 
-            <div class="left">
-                        <div class="profil"><img src="icones/img5.jpg"></div>
-                    
-                        <div class="bloc">
-                            <a href="listeQuizz.php">Listes Questions</a>
-                            <img src="icones/ic-liste-active.png" alt="liste">
-                        </div>
-                        <div class="bloc">
-                            <a href="inscription.php">Créer Admin</a>
-                            <img src="icones/ic-ajout.png" alt="admin">
-                        </div>
-                        <div class="bloc">
-                            <a href="listeJoeurs.php">Listes Joueurs</a>
-                            <img src="icones/ic-liste.png" alt="liste">
-                        </div>
-                        <div class="bloc">
-                            <a href="creerQizz.php">Créer Question</a>
-                            <img src="icones/ic-ajout.png" alt="liste">
-                        </div>   
-            </div>
 
-            <div class="right">
-                <div class="blok">
+            <div class="contenu_liste_quizz">
+                <div class="contenu_liste_quizz_nbre_point">
                         <label for="nbrPoint">Nbr de Points</label>
                         <select>
                             <?php
@@ -62,7 +14,7 @@ if (!isset($_SESSION['prenom'])){
                         </select>
                         <input type="button" value="ok">
                 </div>
-            <div class="formulaire">
+            <div class="contenu_liste_quizz_questions">
             <form  method="POST" action= "" name="quiz" >
                 <ol>
                     <li>			
@@ -120,20 +72,7 @@ if (!isset($_SESSION['prenom'])){
                         </p>
                     </li>
 
-                    <li>			
-                        <p>Les précurseurs de la révolution digitale <br>
-                            
-                            <ul>
-                                <li>
-                                    <input type="radio" name="question2" value="faim">GAFAM
-                                </li>
-                                <li>
-                                    <input type="radio" name="question2" value="peur">CIA-FBI
-                                </li>
-                                
-                            </ul>				    	
-                        </p>
-                    </li>
+                    
 
                 </ol>
             </form>
@@ -142,6 +81,34 @@ if (!isset($_SESSION['prenom'])){
             
 
         </div>  
-    </div>        
-</body>
-</html>
+   
+
+   <style>
+        .contenu_liste_quizz{
+    width: initial;
+    height: 550px;
+     
+    
+}
+.contenu_liste_quizz_questions{
+    width: initial;
+    border: steelblue 1px solid;
+    border-radius: 15px/35px;
+    margin: 0px 0px 0px 25px;
+}
+.contenu_liste_quizz_nbre_point{
+    margin: 5px 0px 10px 50px;
+}
+form ul li {
+	list-style-type: none;
+}
+ 
+
+ 
+#validation {
+    background-color: #3addd6;
+    border-radius: 5px 5px 5px 5px;
+    margin-top: 10px;
+    float:right;
+}
+   </style>

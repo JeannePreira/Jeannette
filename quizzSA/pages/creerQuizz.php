@@ -1,4 +1,54 @@
-body{
+
+    
+
+       
+
+            <div class="right">
+            <h4>PARAMETREZ VOS QUESTIONS</h4>
+                <form action="" method="post" >
+                <div class="formulaire">          
+                    <div class="bloc2">
+                        <label for="question"><p>Questions</p></label>
+                        <textarea name="" id="" cols="30" rows="2"></textarea>
+                    </div>
+
+                    <div class="bloc2">
+                        <label for="nbrPoint">Nbr de Points</label>
+                        <select>
+                            <?php
+                            for ($i = 1; $i <= 100; $i++) {
+                            ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
+                            <?php
+                            }?>
+                        </select>
+                    </div>
+
+                    <div class="bloc2">
+                        <label for="typeRep">Type de réponse</label>
+                        <select name="" id="">
+                            <option value="0">Donnez le type de réponse</option>
+                            <option value="texte">Texte</option>
+                            <option value="multiple">Multiple</option>
+                            <option value="simple">Simple</option>
+                        </select>
+                    </div>
+
+                    <div class="bloc2">
+                        <label for="rep">réponse 1</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="enregistrer">
+                        <input type="submit" value="Enregistrer">
+                    </div>
+                                
+                </form>
+                
+    </div>
+
+<style>
+    body{
     width: initial;
 }
 .container{
@@ -118,17 +168,16 @@ form ul li {
     margin-top: 10px;
     float:right;
 }
-/*liste*/
- td{
-padding-left: 25px;
-padding-right: 30px;
 
-}
- th,td{
-    font-size: 20px;
- }
  
 
  
+
+
+ss
+</style>
+
+
+
 
 

@@ -1,30 +1,24 @@
 <?php
-session_start();
-if (!isset($_SESSION['prenom'])){
-    header("Location: connexion.php");
-    exit;
-    }
+is_connect();
+//afficher les infos du joeur connecté
+    $nom=$_SESSION['user']['nom'];
+    $prenom=$_SESSION['user']['prenom'];
+    $photo= $_SESSION['user']['photo'];
 
 ?>
+    <div class="up-play">
+        <div class="profil">
+            <img src="<?=$photo ?>" alt="logo">
+            <p class="name"><?php echo $nom.' '.$prenom;?></p>
+        </div>
+        
+        <div class="up-play-titre1"> <h3>BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ</h3></div>
+        <div class="up-play-titre2"> <h3>JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE</h3></div>
+        <div class="up-play-disconnexion"><a href="index.php/statut=logout">Déconnexion</a></div> 
+    </div>
 
-    <?php
-    include "header.php"
-    ?>
-    
-
-    <div class="up">
-            <div class="h3"> 
-            <h3>BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ</h3>
-            
-        </div>
-        <div class="h3-2"> 
-            
-            <h3>JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE</h3>
-        </div>
-           <div class="disconnexion"><a href="deconnexion.php">Déconnexion</a></div> 
-        </div>
-        <div class=container>
-                <div class="right">
+        <div class=container-play>
+        <div class="right">
                     <div class="head-right">
                         <div class="quizz"><p>Question 1/5</p></div>
                         <div class="rep-quizz"><p>Les langages web</p></div>
@@ -61,7 +55,7 @@ if (!isset($_SESSION['prenom'])){
                         <a href="?lien=interfaceJoueur&page=top-score">Top score</a>
                     </div>
                     <div class="best-score">
-                        <a href="?lien=interfaceJoueur&page=best-score">Mon meilleur score</a>
+                        <a href="../?lien=interfaceJoueur&page=best-score">Mon meilleur score</a>
                     </div>
                 </div>
          </div>  
@@ -81,53 +75,72 @@ if (!isset($_SESSION['prenom'])){
                         }
                     }
                 ?>
-         </div> 
+         </div>    
+        </div>
 
 
-
-         <style>
-             
-
-.up{
-    width: 95%;
-    height: 70px;
-    background-color: #51bfd0;
-    margin:5px 0px 0px 0px;
-}
-.h3{
-   padding-left: 2px;
+<style>
+      img{
+          height:50px;
+          border:3px solid white;
+          border-radius:100%;
+          position:relative;
+          top:2px;
+          left:20px;
+      } 
+       .name{
+        position:relative;
+        bottom:22px; 
+        left:10px; 
+      }     
+    .up-play{
+        width: 93.5%;
+        height: 75px;
+        background-color: #51bfd0;
+        position: relative;
+        top:5px;
+        left: 40px;
+    }
+.up-play-titre1{
     color: #f8fdfd;
     position: absolute;
-  font-size:20px;
-   left: 200px;  
-   top:40px;
-}
-.h3-2{
-   padding-left: 2px;
-    color: #f8fdfd;
+    left: 180px; 
+    bottom:13px;
     font-size:20px;
-    position: absolute;
-    top:78px;
-  left: 180px;  
 }
-.disconnexion a{
-   
+.up-play-titre2{
+    color: #f8fdfd;
+    position: absolute;
+    left: 160px; 
+    top:10px;
+    font-size:20px; 
+}
+.up-play-disconnexion{
+    width: 10%;
+    position: relative;
+    bottom:90px;
+    left: 950px;
+    padding:5px;
    background-color: #3addd6;
-   border-radius: 5px/2px;
-   padding: 3px;
+   border-radius: 3px;
+}
+.up-play-disconnexion a{
+    margin-left:10px;
    text-decoration: none;
-   color:#042425;
+   color:white
+  
 }
-.disconnexion{
-    margin: 25px 0px 10px 990px;
-    position: absolute;
- 
-}
-            .container{
-                width:95%;
-                height:480px;
-                background-color: #f8fdfd;
-                border-radius:5px;
+
+
+.container-play{
+    width: 93.5%;
+    height: 450px;
+    background-color: #f8fdfd;
+    border-radius: 0px 0px 5px 5px;
+    position:relative;
+    top:15px;
+    left: 40px;
+
             }
             .right{
                 width:70%;
@@ -138,9 +151,7 @@ if (!isset($_SESSION['prenom'])){
                 border-radius:5px;
                 margin:15px 0px 0px 10px;
             }
-            p{
-                
-            }
+            
             .head-right{
                 width:98%;
                 height:80px;
