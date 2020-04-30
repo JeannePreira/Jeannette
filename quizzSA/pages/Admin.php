@@ -8,7 +8,7 @@ is_connect();
 
     <div class="text">
         <div class="text-titre"><h3>CREER ET PARAMETRER VOS QUIZZ</h3></div>
-        <div class="text-disconnexion"><a href="index.php">Déconnexion</a></div> 
+        <div class="text-disconnexion"><a href="index.php/statut=logout">Déconnexion</a></div> 
     </div>
     
     
@@ -16,10 +16,10 @@ is_connect();
     <div class=bloc_body_admin>
 
             <div class="left">
-            <div class="profil">
-                <img src="<?=$photo ?>" alt="logo" class="image">
-                <p class="name-user"><?php echo $nom.'<br>'.$prenom;?></p>
-            </div>
+                        <div class="profil">
+                            <img src="<?=$photo ?>" alt="logo" class="image">
+                            <p class="name-user"><?php echo $nom.'<br>'.$prenom;?></p>
+                        </div>
                     
                         <div class="bloc">
 
@@ -35,7 +35,7 @@ is_connect();
                         </div>
                         <div class="bloc">
 
-                            <a href="index.php?lien=accueil&menu=listeJoueurs?page=1">Listes Joueurs</a>
+                            <a href="index.php?lien=accueil&menu=listeJoueurs&page=1">Listes Joueurs</a>
                             <img src="./public/icones/ic-liste.png" alt="liste">
 
                         </div>
@@ -115,10 +115,12 @@ is_connect();
 
 .left{
     width: 30%;
-    height: 300px;
+    height: 320px;
     border-radius: 5px 5px 5px 5px;
      background-color: white; 
-     margin: 80px 0px 0px 10px; 
+     position:absolute;
+     top:80px;
+     left:10px; 
      float: left;   
    
 }
@@ -127,13 +129,15 @@ is_connect();
     height: 110px;
     background-color:  #51bfd0;
     border-radius: 5px 5px 0px 0px;
+    position:relative;
+     bottom:13px;
 }
 .image{
     width: initial;
     height: 80px;
     margin: 10px 0px 0px 20px;
     border: #e56945 1px solid;   
-    border-radius: 80px;
+    border-radius: 200px;
     padding: 3px;
     float: left;  
 }
@@ -145,7 +149,7 @@ is_connect();
 .bloc{
     width: initial;
     height: 30px;
-    margin: 5px 0px 5px 5px;
+    margin: 0px 0px 5px 5px;
     padding: 6px;
 }
 .bloc a{

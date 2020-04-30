@@ -37,7 +37,7 @@ if(isset($_POST['btn_submit']))//pour vérifier si on acliker sur le bouton
             
             <div class="form-bloc">
                 <button type="text" class="line-btn" name="btn_submit"  id="">Connexion</button>
-                <a href="./pages/inscription.php" class="line-link">S'inscrire pour jouer</a>
+                <a href="index.php?lien=inscription" class="line-link">S'inscrire pour jouer</a>
             </div>
 
         </form>

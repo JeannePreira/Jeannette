@@ -26,6 +26,9 @@
                         case "jeux":
                             require_once ('./pages/interfaceJoueur.php');
                         break;
+                        case "inscription":
+                            require_once ('./pages/inscription.php');
+                        break;
                     }
                 }else{
                     if(isset($_GET['statut']) && $_GET['statut']==='logout'){

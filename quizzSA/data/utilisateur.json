@@ -1,20 +1,111 @@
 [
     {
-        "nom":"admin",
-        "prenom":"admin",
+        "nom":" ADMIN",
+        "prenom":"Admin",
         "login":"admin",
         "password":"admin",
         "profil":"admin",
         "photo":"/quizzSA/public/images/admin.png",
-        "score":"254"
+        "score":"2154"
     },
     {
-        "nom":"joueur",
-        "prenom":"joueur",
+        "nom":"JOUEUR",
+        "prenom":"Joueur",
         "login":"joueur",
         "password":"joueur",
         "profil":"joueur",
         "photo":"/quizzSA/public/images/joueur.jpg",
+        "score":"25544"
+    },
+    {
+        "nom":"PREIRA",
+        "prenom":"Virginie",
+        "login":"bea",
+        "password":"5555",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/fd.jpg",
+        "score":"254"
+    },
+    {
+        "nom":"PREIRA",
+        "prenom":"Gabriel",
+        "login":"gaby",
+        "password":"jbb2007",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/imavxges.jpg",
+        "score":"8540"
+    },
+    {
+        "nom":"LEYE",
+        "prenom":"Marema",
+        "login":"ameram",
+        "password":"lionne01",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/femme.jpg",
+        "score":"254"
+    },
+    {
+        "nom":"NDiaye",
+        "prenom":"Seynabou",
+        "login":"zeh",
+        "password":"2156",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/s.jpg",
+        "score":"2544"
+    },
+    {
+        "nom":"PREIRA",
+        "prenom":"Jeannetta",
+        "login":"jeannetta",
+        "password":"guepard",
+        "profil":"admin",
+        "photo":"/quizzSA/public/images/imagejs.jpg",
+        "score":"254"
+    },
+    {
+        "nom":"DIOUF",
+        "prenom":"Hyacinthe",
+        "login":"diadié",
+        "password":"7897",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/images.jpg",
+        "score":"2544"
+    },
+    {
+        "nom":"NIANG",
+        "prenom":"Nafissatou",
+        "login":"fina",
+        "password":"4544",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/imagejs.jpg",
+        "score":"254"
+    },
+    {
+        "nom":"DIALLO",
+        "prenom":"Sokhna",
+        "login":"sokhoubb",
+        "password":"11111",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/joueur.jpg",
+        "score":"2544"
+    },
+    {
+        "nom":"PREIRA",
+        "prenom":"Francois",
+        "login":"franc",
+        "password":"0001",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/homme.jpg",
+        "score":"254"
+    },
+    {
+        "nom":"GADIO",
+        "prenom":"Yaya",
+        "login":"yasouf",
+        "password":"7777",
+        "profil":"joueur",
+        "photo":"/quizzSA/public/images/g.jpg",
         "score":"2544"
     }
+   
 ]

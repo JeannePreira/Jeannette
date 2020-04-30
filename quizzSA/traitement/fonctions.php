@@ -70,7 +70,51 @@
         return ($char>='0' && $char<='9');
     }
 
+
+   
+
 ?>
+<script>
+     function is_question_empty(){
+        
+        var question=document.getElementById("question").value
+        if(question){
+            return true;
+        }else{
+            document.getElementById("error-1").innerText="Entrer une question";
+            return false;
+        }
+    }
+
+    function is_score_empty(){
+        var score=document.getElementById("score").value
+        if(!Number.isInteger(+score)){   
+            document.getElementById("error-2").innerText="Entrer un nombre";
+            return false; 
+        }else{
+            return true;
+        }        
+    }
+
+    function clik_checkbox(){
+        
+        var form=document.getElementById("form");
+        var checks=form.getElementsByClassName("check")
+        for(let chk of checks){
+            if(chk.checked){
+                return true;
+            }
+        }
+        document.getElementById("error-3").innerText="cocher d'abord!";
+        return false;
+    }
+
+
+
+    function validate(){
+       return is_question_empty() && is_score_empty() && clik_checkbox()
+    }
+</script>
 
 <?php
     function is_Prenom_valide($chaine){
@@ -111,3 +155,9 @@
             }
     }
 ?>
+
+
+
+
+
+

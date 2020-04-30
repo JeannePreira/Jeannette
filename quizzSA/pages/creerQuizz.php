@@ -1,180 +1,311 @@
 
+
+<?php
+//stockage
+if(isset($_POST['validation'])){
+  
+    $message=array();
+    if(isset($_POST['type_reponse'])){
+        if($_POST['type_reponse']=='texte'){
+            $message["question"]=$_POST["question"];
+            $message['nombre_de_point']=$_POST['score'];
+            $message['type_reponse']=$_POST['type_reponse'];
+            $message['reponse']=$_POST['reponse']; 
+        }else{
+            $message["question"]=$_POST["question"];
+            $message['nombre_de_point']=$_POST['score'];
+            $message['type_reponse']=$_POST['type_reponse'];
+            $message['reponse']=$_POST['reponse'];
+            $message['reponse_vrai']=$_POST['reponse_vrai'];
+        }
+    }
     
+   
 
-       
 
-            <div class="right">
-            <h4>PARAMETREZ VOS QUESTIONS</h4>
-                <form action="" method="post" >
-                <div class="formulaire">          
-                    <div class="bloc2">
-                        <label for="question"><p>Questions</p></label>
-                        <textarea name="" id="" cols="30" rows="2"></textarea>
-                    </div>
+    $js= file_get_contents('./data/question.json');//contenue du fichier json
 
-                    <div class="bloc2">
-                        <label for="nbrPoint">Nbr de Points</label>
-                        <select>
-                            <?php
-                            for ($i = 1; $i <= 100; $i++) {
-                            ?>
-                            <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                            <?php
-                            }?>
-                        </select>
-                    </div>
+    $js= json_decode($js, true);//convertir le fichier json en tableau
 
-                    <div class="bloc2">
-                        <label for="typeRep">Type de réponse</label>
-                        <select name="" id="">
-                            <option value="0">Donnez le type de réponse</option>
-                            <option value="texte">Texte</option>
-                            <option value="multiple">Multiple</option>
-                            <option value="simple">Simple</option>
-                        </select>
-                    </div>
+    $js[]= $message;//ajouter notre nouveau element dans le fichier json
 
-                    <div class="bloc2">
-                        <label for="rep">réponse 1</label>
-                        <input type="text">
-                    </div>
+    $js= json_encode($js);//reconvertir en json
 
-                    <div class="enregistrer">
-                        <input type="submit" value="Enregistrer">
-                    </div>
+    file_put_contents('./data/question.json', $js);//le remetre dans le fichier json
+    
+}
+
+?>
+
+
+            <div class="contenu_create_quizz">
+                <div class="contenu_create_quizz_header">
+                    <h4>PARAMETREZ VOS QUESTIONS</h4>
+                </div>
+                <div class="contenu_create_quizz_body">
+                    <form action="" method="post" id="form" onsubmit="return validate();"  > 
+                            <div class="bloc_form">
+
+                                <div class="form_quizz"><label for="question">Questions</label></div>
+                                <div class="form_text"><textarea name="question" id="question" error="error-1" cols="30" rows="2"></textarea></div>
+                                <div class="line-error" id="error-1"></div>
+                            </div>
+        
+                            <div class="bloc_form">
+                                <br><br><br><br>
+                                <label for="nbrPoint">Nbr de Points</label>
+                                <input type="number" name="score" min="1" value="score" id="score" error="error-2" class="nombre" required>
+                                <div class="line-error" id="error-2"></div>
+                            </div>
+        
+                            <div class="bloc_form">
+
+                                <label for="typeRep">Type de réponse</label>
+
+                                <select name="type_reponse" id="type_reponse" required>
+                                    <option value="0" >Donnez le type de réponse</option>
+                                    <option value="texte"onclick="addInput()" >Texte</option>
+                                    <option value="multiple" onclick=addInputMultiple() >Multiple</option>
+                                    <option value="simple" onclick="addInputSimple()">Simple</option>
+                                </select>
                                 
-                </form>
-                
-    </div>
+                                 <img src="public/icones/ic-ajout-réponse.png"  class='genere' id="genere" onclick="add()" alt="ajout" >
+
+                            </div>
+                            <div id="error-3"></div>s
+                           
+                                <div id="inputs">
+
+                                </div>
+                            
+                            </div>
+                            <div class="enregistrer">
+
+                                <input type="submit" value="Enregistrer" name="validation">
+
+                            </div>
+                                        
+                    </form>
+                </div>
+            </div>  
+   
+
+
+<script>
+var nbregenere = 1;
+var count_simple = 1;
+var count_multiple = 1;
+        function addInputSimple(n) {
+            
+            nbregenere++;
+            var divInputs = document.getElementById("inputs");
+            var newInput = document.createElement("div");
+            var div_error = document.createElement("div");
+            newInput.setAttribute('id','new_input_'+nbregenere);
+            newInput.setAttribute('class','new_input');
+            newInput.innerHTML = `<input class="input-reponse" type="text" name="reponse[${count_simple}]" id="" class="box">
+            <input  type="radio" name="reponse_vrai" id="simple" value="reponse${count_simple}">
+            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" onclick="onDeleteInput(${nbregenere})">`;
+            divInputs.appendChild(newInput);
+            count_simple++;
+
+        }
+
+        
+
+        function addInput() {
+            nbregenere++;
+            var divInputs = document.getElementById("inputs");
+            var newInput = document.createElement("div");
+            newInput.setAttribute('id','new_input_'+nbregenere);
+            newInput.setAttribute('class','new_input');
+            newInput.innerHTML = `ENTRER VOTRE REPONSE/<input class="input-reponse" type="text" name="reponse" id="">
+            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" onclick="onDeleteInput(${nbregenere})">`;
+            divInputs.appendChild(newInput);
+        }
+
+        function addInputMultiple() {
+            nbregenere++;
+            var divInputs = document.getElementById("inputs");
+            var newInput = document.createElement("div");
+            newInput.setAttribute('id','new_input_'+nbregenere);
+            newInput.setAttribute('class','new_input');
+            newInput.innerHTML = `ENTRER VOTRE REPONSE/<input class="input-reponse" type="text" name="reponse[${count_multiple}]" id="texte">
+            <input type="checkbox" name="reponse_vrai[${count_multiple}]" id="simple" value="reponse${count_multiple}" class="check">
+            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" onclick="onDeleteInput(${nbregenere})">`;
+            divInputs.appendChild(newInput);
+            count_multiple++;
+        }
+      
+            function add(){
+                var type = document.getElementById("type_reponse").value;
+                if (type == 'multiple') {
+                    return addInputMultiple();
+                } else if (type == 'simple') {
+                    return addInputSimple();
+                }
+            }
+        
+       
+            function onDeleteInput(n){
+            var target = document.getElementById('new_input_'+n);  
+                     setTimeout(function(){
+                        target.remove();
+                    },500)
+                    fadeout('new_input_'+n);
+        }
+
+        function fadeOut(idTarget){
+                    var target = document.getElementById(idTarget);
+                    var effect = setInterval(function(){
+                        if(!target.style.opacity){
+                            target.style.opacity = 1;
+                        }
+                        if(target.style.opacity>0){
+                            target.style.opacity = 0.1;
+                        }else{
+                            clearInterval(effet);
+                        }
+                    },200); 
+                }
+
+
+
+
+</script>
+
+
+
+
+
+
+<script>
+    const inputs=document.getElementsByClassName("input");
+    for(input of inputs){
+        input.addEventListener("keyup",function(e){
+        if(e.target.hasAttribute("error")) {
+            var idDivError=e.target.getAttribute("error")
+            document.getElementById(idDivError).innerText=""
+        }
+        })
+
+    }
+
+document.getElementById("form-question").addEventListener("submit", function(e){
+    const inputs=document.getElementsByClassName("input");
+    var error=false;
+    for(input of inputs){
+        if(input.hasAttribute("error")){
+           var idDivError=input.getAttribute("error")
+        if(!input.value){   //on verifie si le champ est vide
+                document.getElementById(idDivError).innerText="Ce champ est obligatoire"
+                error=true;  // on met error à true pour dire qu'on a trouvé une erreur!
+            }
+           
+        }
+    }
+    if(error){
+        e.preventDefault();
+    }
+   
+})
+
+
+</script>
+
+
+
 
 <style>
-    body{
-    width: initial;
-}
-.container{
-    width: 70%;
-    height: 620px;
-    margin:0px 0px 0px 200px;
-    background-color: #f8fdfd;
-    border-radius: 5px 5px 5px 5px;
-}
-.up{
-    width: 70%;
-    height: 50px;
-    background-color: #51bfd0;
-    margin:20px 0px 0px 200px;
-}
-h3{
-   padding-left: 2px;
-    color: #f8fdfd;
-    position: absolute;
-   margin-top: 15px;
-   margin-left: 200px;  
-}
-.disconnexion a{
+    .contenu_create_quizz{
+        width:90%;
+        margin-left:30px;
+    }
+    h4{
+        margin:-1px 0px 5px 150px;
+        padding:10px;
+        font-size:23px;
+        color:#51bfd0;
+    }
+    .contenu_create_quizz_body{
+        width:initial;
+        height:420px;
+        border:1px solid #51bfd0;
+        border-radius: 15px/35px;
+    }
    
-   background-color: #3addd6;
-   border-radius: 5px/2px;
-   padding: 3px;
-   text-decoration: none;
-   color:#042425;
-}
-.disconnexion{
-    margin: 15px 0px 10px 770px;
-    position: absolute;
- 
-}
-.big-bloc{
-    width: initial;
-    height: 530px;
-    border: #f8fdfd 3px solid;
-}
-/*menu*/
-
-.left{
-    width: 30%;
-    height: 300px;
-    border-radius: 5px 5px 5px 5px;
-     background-color: white; 
-     margin: 80px 0px 0px 10px; 
-     float: left;   
-   
-}
-.profil {
-    width: initial;
-    height: 110px;
-    background-color:  #51bfd0;
-    border-radius: 5px 5px 0px 0px;
-}
-.profil img{
-    width: initial;
-    height: 40px;
-    margin: 10px 0px 0px 20px;
-    border: #e56945 1px solid;   
-    border-radius: 80px;
-    padding: 3px;
-    float: left;  
-}
-.bloc{
-    width: initial;
-    height: 30px;
-    margin: 5px 0px 5px 5px;
-    padding: 6px;
-}
-.bloc a{
-    text-decoration: none;
-    color: black;
-    padding-left: 2px;
-    float: left; 
-    font-size: 20px;  
-}
- .bloc img{
-    width: 10%;
-    height: 25px;
-    margin-left: 50px;
-    float: right;
-}
-.bloc:hover{
-    border-left: 3px solid green;
+    .enregistrer{
+        width: 15%;
+        position:absolute;
+        top:440px;
+        right:10px;
+    }
+    .nombre{
+    width:80px;
+    height:30px;
+    background-color:rgb(219, 212, 212);
+    border:1px solid rgb(219, 212, 212);
+    border-bottom:#51bfd0 1px solid;
+     border-radius:2px; 
+    }
+    select{
+    width:320px;
+    height:40px;
+    background-color:rgb(219, 212, 212);
+     border:1px solid rgb(219, 212, 212);
+     border-bottom:#51bfd0 1px solid;
+     border-radius:2px;  
+    }
+    .enregistrer input{
+        background-color: #3addd6;
+        border-radius: 3px;
+        padding:5px;
+    color:white
+    }
+    .bloc_form{
+        padding:10px;
+        font-size:23px;
+    }
+    .form_quizz{ 
+        float:left;
+        position:relative;
+        top:25px;  
+    }
+    .form_text{
+        float:right;
+        position:relative;
+        right:10px;
+        bottom:0px;
+    }
+    textarea{
+    width:490px;
+    height:80px; 
+    background-color:rgb(219, 212, 212);  
+    border:1px solid rgb(219, 212, 212);
+    border-bottom:#51bfd0 1px solid;
+    border-radius:2px; 
+    }
+    .button_supp{
+        position:relative;
+        top:5px;
+        left:3px;
+    }
+.genere{
+    position:relative;
+    top:14px;
 }
 
-/*affichage*/
-.right{
-    width: 60%;
-    height: 550px;
-    float: right; 
-    margin-right: 50px;
-    background-color: white; 
-    border-radius: 5px 5px 5px 5px;
+.new_input{
+    padding:10px;
 }
-.formulaire{
-    width: 90%;
-    border: steelblue 1px solid;
-    border-radius: 15px/35px;
-    margin-left: 25px;
+.input-reponse{
+    width:300px;
+    height:25px;
+    background-color:rgb(219, 212, 212);
+    border:1px solid rgb(219, 212, 212);
+    border-bottom:#51bfd0 1px solid;
+    border-radius:2px; 
 }
-.blok{
-    margin: 5px 0px 10px 50px;
-}
-form ul li {
-	list-style-type: none;
-}
- 
-
- 
-#validation {
-    background-color: #3addd6;
-    border-radius: 5px 5px 5px 5px;
-    margin-top: 10px;
-    float:right;
-}
-
- 
-
- 
-
-
-ss
 </style>
 
 

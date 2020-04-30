@@ -55,7 +55,7 @@ is_connect();
                         <a href="?lien=interfaceJoueur&page=top-score">Top score</a>
                     </div>
                     <div class="best-score">
-                        <a href="../?lien=interfaceJoueur&page=best-score">Mon meilleur score</a>
+                        <a href="./index?lien=interfaceJoueur&page=best-score">Mon meilleur score</a>
                     </div>
                 </div>
          </div>  
