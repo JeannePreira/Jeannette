@@ -45,14 +45,25 @@ if (isset($_POST['ok'])){
                                     $reponse=$table[$cpt]['reponse'];
                                 if($table[$cpt]['type_reponse']=='simple'){
                                     for($i=1;$i<=count($reponse);$i++){
-                                        echo  '<input  type="radio" name=""  value="">';
-                                        echo $reponse[$i].'<br>';
+                                        if($reponse===$table[$cpt]['reponse_vrai']){
+                                            echo  '<input  type="radio" name=""  value="" checked>';
+                                            echo $reponse[$i].'<br>';
+                                        }else{
+                                            echo  '<input  type="radio" name=""  value="">';
+                                            echo $reponse[$i].'<br>';
+                                        }
                                     }
                                 }else
                                     if($table[$cpt]['type_reponse']=='multiple'){
                                         for($j=1;$j<=count($reponse);$j++){
-                                            echo  '<input  type="checkbox" name=""  value="">';
+                                            if($reponse===$table[$cpt]['reponse_vrai']){
+                                                echo  '<input  type="checkbox" name=""  value="" checked>';
                                             echo $reponse[$j].'<br>';
+                                            }else{
+                                                echo  '<input  type="checkbox" name=""  value="" >';
+                                                echo $reponse[$j].'<br>';
+                                            }
+                                            
                                         } 
                                     }else{
                                         echo $reponse.'<br>';
