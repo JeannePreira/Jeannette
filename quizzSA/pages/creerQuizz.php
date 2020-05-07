@@ -16,7 +16,15 @@ if(isset($_POST['validation'])){
             $message['nombre_de_point']=$_POST['score'];
             $message['type_reponse']=$_POST['type_reponse'];
             $message['reponse']=$_POST['reponse'];
-            $message['reponse_vrai']=$_POST['reponse_vrai'];
+            if($_POST['type_reponse']=="multiple" || $_POST['type_reponse']=="simple")
+            { foreach($_POST['reponse'] as $key1 => $val1)
+               {
+                    foreach($_POST['reponse_vrai'] as $key2 => $val2)
+                    {
+                             if($key1==$key2){ $message['reponse_vrai'][]=$val1;}
+                     }
+                }
+            }
         }
     }
     
@@ -103,9 +111,11 @@ var count_multiple = 1;
             var div_error = document.createElement("div");
             newInput.setAttribute('id','new_input_'+nbregenere);
             newInput.setAttribute('class','new_input');
-            newInput.innerHTML = `<input class="input-reponse" type="text" name="reponse[${count_simple}]" id="" class="box">
-            <input  type="radio" name="reponse_vrai" id="simple" value="reponse${count_simple}">
-            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" onclick="onDeleteInput(${nbregenere})">`;
+            newInput.innerHTML = `<input class="input-reponse" type="text" 
+            name="reponse[${count_simple}]" id="" >
+            <input  type="radio" name="reponse_vrai[${count_simple}]" id="simple" value="reponse${count_simple}" class="check">
+            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp"
+             onclick="onDeleteInput(${nbregenere})">`;
             divInputs.appendChild(newInput);
             count_simple++;
 
@@ -119,8 +129,10 @@ var count_multiple = 1;
             var newInput = document.createElement("div");
             newInput.setAttribute('id','new_input_'+nbregenere);
             newInput.setAttribute('class','new_input');
-            newInput.innerHTML = `ENTRER VOTRE REPONSE/<input class="input-reponse" type="text" name="reponse" id="">
-            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" onclick="onDeleteInput(${nbregenere})">`;
+            newInput.innerHTML = `ENTRER VOTRE REPONSE/<input class="input-reponse"
+             type="text" name="reponse" id="">
+            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp"
+             onclick="onDeleteInput(${nbregenere})">`;
             divInputs.appendChild(newInput);
         }
 
@@ -130,9 +142,12 @@ var count_multiple = 1;
             var newInput = document.createElement("div");
             newInput.setAttribute('id','new_input_'+nbregenere);
             newInput.setAttribute('class','new_input');
-            newInput.innerHTML = `ENTRER VOTRE REPONSE/<input class="input-reponse" type="text" name="reponse[${count_multiple}]" id="texte">
-            <input type="checkbox" name="reponse_vrai[${count_multiple}]" id="simple" value="reponse${count_multiple}" class="check">
-            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" onclick="onDeleteInput(${nbregenere})">`;
+            newInput.innerHTML = `ENTRER VOTRE REPONSE/<input class="input-reponse" type="text" 
+            name="reponse[${count_multiple}]" id="texte">
+            <input type="checkbox" name="reponse_vrai[${count_multiple}]" id="simple" 
+            value="reponse${count_multiple}" class="check">
+            <img src="public/icones/ic-supprimer.png" alt="delete" class="button_supp" 
+            onclick="onDeleteInput(${nbregenere})">`;
             divInputs.appendChild(newInput);
             count_multiple++;
         }
@@ -179,39 +194,6 @@ var count_multiple = 1;
 
 
 
-<script>
-    const inputs=document.getElementsByClassName("input");
-    for(input of inputs){
-        input.addEventListener("keyup",function(e){
-        if(e.target.hasAttribute("error")) {
-            var idDivError=e.target.getAttribute("error")
-            document.getElementById(idDivError).innerText=""
-        }
-        })
-
-    }
-
-document.getElementById("form-question").addEventListener("submit", function(e){
-    const inputs=document.getElementsByClassName("input");
-    var error=false;
-    for(input of inputs){
-        if(input.hasAttribute("error")){
-           var idDivError=input.getAttribute("error")
-        if(!input.value){   //on verifie si le champ est vide
-                document.getElementById(idDivError).innerText="Ce champ est obligatoire"
-                error=true;  // on met error à true pour dire qu'on a trouvé une erreur!
-            }
-           
-        }
-    }
-    if(error){
-        e.preventDefault();
-    }
-   
-})
-
-
-</script>
 
 
 

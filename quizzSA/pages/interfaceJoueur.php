@@ -6,77 +6,213 @@ is_connect();
     $photo= $_SESSION['user']['photo'];
 
 ?>
-    <div class="up-play">
-        <div class="profil">
-            <img src="<?=$photo ?>" alt="logo">
-            <p class="name"><?php echo $nom.' '.$prenom;?></p>
-        </div>
-        
-        <div class="up-play-titre1"> <h3>BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ</h3></div>
-        <div class="up-play-titre2"> <h3>JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE</h3></div>
-        <div class="up-play-disconnexion"><a href="index.php/statut=logout">Déconnexion</a></div> 
+
+
+<?php
+         
+    $tab=file_get_contents('./data/interface_joueur.json');
+    $tab=json_decode($tab,true);
+    $_SESSION['number']=(int)$tab['nombre_par_jeu'];//recuperation
+?>
+ 
+
+
+
+
+<div class="up-play">
+    <div class="profil">
+
+        <img src="<?=$photo ?>" alt="logo">
+        <p class="name"><?php echo $nom.' '.$prenom;?></p>
+
     </div>
+        
+    <div class="up-play-titre1"> <h3>BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ</h3></div>
+    <div class="up-play-titre2"> <h3>JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE</h3></div>
+    <div class="up-play-disconnexion"><a href="index.php/statut=logout">Déconnexion</a></div> 
 
-        <div class=container-play>
-        <div class="right">
-                    <div class="head-right">
-                        <div class="quizz"><p>Question 1/5</p></div>
-                        <div class="rep-quizz"><p>Les langages web</p></div>
-                    </div>
-                    <div class="body-right">
+</div>
 
-                            <div class="bloc">
-                                <div class="bloc1">
-                                    <div class="rep">
-                                        <input type="checkbox" name="" id=""><label for="html">HTML</label>
-                                    </div>
-                                    <div class="rep">
-                                            <input type="checkbox" name="" id=""><label for="R">R</label>
-                                    </div>
-                                    <div class="rep">
-                                    <input type="checkbox" name="" id=""><label for="JAVA">JAVA</label>
-                                    </div>
-                                </div>
-                                <div class="bloc2">
-                                    <div class="point">3pts</div>
-                                </div>
+<div class=container-play>
+
+    <div class="right">
+    
+        
+
+            <?php if($_GET['suite']<=$_SESSION['number']) {
+            
+            echo '<div class="quizz"><p>Question'.' '?><?=$_GET['suite']?>
+
+            <?php  echo '/'.$_SESSION['number']?></p></div>
+                        
+            <?php
+                $data=file_get_contents("./data/question.json");
+                $table=json_decode($data,true);
+                            
+                $max=$_GET['suite']*1;
+                $min=$max-1;
+                $a=(int)$_GET['suite']+1; ?> 
+               <?php for($cpt=$min;$cpt<$max;$cpt++){   
+                    if(array_key_exists($cpt,$table)){?>
+                        <div class="head-right">
+                               <?php echo'<div class="rep-quizz"><p>'.$table[$cpt]['question'].'</p></div>';   ?>                          
+                        </div> 
+                    
+        <div class="bloc">
+     
+            <div class="bloc1">     
+
+                    <form action="pages/action.php?question=<?= $cpt ?>&suite=<?= $a ?>" method="post">
+                        <?php    
+                        $reponse=$table[$cpt]['reponse'];
+                        if($table[$cpt]['type_reponse']=='simple'){
+                            for($i=1;$i<=count($reponse);$i++){
+                                echo  "<input  type='radio' name='radio'  value='<?= $reponse[$i] ?>' >";
+                                echo '<label>'.$reponse[$i].'</label><br>';
+                            }
+                        }else
+                            if($table[$cpt]['type_reponse']=='multiple'){
+                                var_dump(@$_SESSION['check']);
+                                var_dump($a);
+                                for($j=1;$j<=count($reponse);$j++){
+                                    $est_cocher=false;
+                                    if(isset($_SESSION['check'][$a-1])){
+                                        foreach ($_SESSION['check'][$a-1] as  $value) {
+                                            if($reponse[$j]==$value){
+                                                $est_cocher=true; 
+                                            }
+                                        }
+                                    }
+                                    if($est_cocher){
+                                        echo  "<input  type='checkbox' name='check[]'  value='<?= $reponse[$j] ?>' checked >";
+                                        echo '<label>'.$reponse[$j].'</label><br>';
+                                    }else{
+                                        echo  "<input  type='checkbox' name='check[]'  value='<?= $reponse[$j] ?>' >";
+                                        echo '<label>'.$reponse[$j].'</label><br>';
+                                    }
+                                    
+                                }
+                            }else
+                                {
+                                echo  '<input  type="text" name="texte"  value="" >';
+                                 
+                                } ?>
+
+                            <div class="nav">
+
+                                    <?php   
+                                        
+                                            
+                                        if($_GET['suite']<($_SESSION['number'])){
+                                            echo"<div class='suivant'><button>suivant</button></div>";
+                                        }else
+                                            if($_GET['suite']===($_SESSION['number'])){
+                                                echo"<div class='suivant'><a href='index.php?lien=jeux&suite=$a'><button>Terminer</button></a></div>";
+                                            }
+
+                                            if($_GET['suite']>1){
+                                                echo '<button
+                                                onclick="rtn()" type="submit" class="precedent">Précédent</button>';
+                                            }
+                                            
+                                    ?>
+                                            
+                                    <?php }  ?> 
                             </div>
+                    </form>
+            </div>
 
-                        <div class="nav">
-                            <button type="submit" class="precedent">Précédent</button>
-                            <button type="submit" class="suivant">Suivant</button>
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-                <div class="left">
-                    <div class="top-score">
-                        <a href="?lien=interfaceJoueur&page=top-score">Top score</a>
-                    </div>
-                    <div class="best-score">
-                        <a href="./index?lien=interfaceJoueur&page=best-score">Mon meilleur score</a>
-                    </div>
-                </div>
-         </div>  
+            <div class="bloc2">
+
+                 <div class="point"> <?php echo $table[$cpt]['nombre_de_point'].'pts';?></div>
+                 <?php  }                                   
+                }?>
+
+            </div>
+            
+       
+        </div>                    
+            
+               
+    </div>
+      
+    <div class="left">
+        <?php include_once 'lien.php' ?>
+    </div>
+              
+</div>
 
 
-         <div class="affichescore">
-                <?php
-                    if(isset($_GET['page'])){
-                        switch($_GET['page']){
-                            case "top-score":
-                                include('top-score.php');
-                            break;
-                            case "best-score":
-                                include('best-score.php');
-                            break;
-                            default;
-                        }
-                    }
-                ?>
-         </div>    
-        </div>
+<script>
+function rtn() {
+   window.history.back();
+}
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <style>
@@ -203,10 +339,11 @@ is_connect();
                 position:relative;
                 top:180px;
             }
-            .suivant{
+            .suivant button{
                 width:18%;
                 position:relative;
-                left:250px;
+                top:130px;
+                float:right;
                 padding:10px;
                 background-color: blue;
                 border-radius:5px;
@@ -214,7 +351,8 @@ is_connect();
             .precedent{
                 width:18%;
                 position:relative;
-                left:-180px;
+                top:130px;
+                float:left;
                 padding:10px;
                 border-radius:5px;
                 background-color: gray;

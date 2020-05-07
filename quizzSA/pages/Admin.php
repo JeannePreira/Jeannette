@@ -23,7 +23,7 @@ is_connect();
                     
                         <div class="bloc">
 
-                            <a href="index.php?lien=accueil&menu=listeQuizz">Listes Questions</a>
+                            <a href="index.php?lien=accueil&menu=listeQuizz&fenetre=1">Listes Questions</a>
                             <img src="./public/icones/ic-liste-active.png" alt="liste">
 
                         </div>
@@ -42,7 +42,13 @@ is_connect();
                         <div class="bloc">
                             <a href="index.php?lien=accueil&menu=creerQuizz">Créer Question</a>
                             <img src="./public/icones/ic-ajout.png" alt="liste">
-                        </div>   
+                        </div>  
+                        <div class="bloc">
+
+                            <a href="index.php?lien=accueil&menu=dashboard">Dashboard</a>
+                            <img src="./public/icones/ic-liste-active.png" alt="liste">
+
+                        </div> 
             </div>
 
             <div class="right">
@@ -56,6 +62,8 @@ is_connect();
                     require_once("listeJoueurs.php");
                 }elseif($_GET['menu']=='creerQuizz'){
                     require_once("creerQuizz.php");
+                }elseif($_GET['menu']=='dashboard'){
+                    require_once("dashboard.php");
                 }
                        
             }else{
@@ -71,7 +79,7 @@ is_connect();
 <style>
        
 .text{
-    width: 90%;
+    width: 90.4%;
     height: 20px;
     background-color: #51bfd0;
     position: relative;
@@ -115,7 +123,7 @@ is_connect();
 
 .left{
     width: 30%;
-    height: 320px;
+    height: 360px;
     border-radius: 5px 5px 5px 5px;
      background-color: white; 
      position:absolute;

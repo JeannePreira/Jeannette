@@ -1,6 +1,6 @@
 
 <?php
-$js=file_get_contents('page.json');
+$js=file_get_contents('./traitement/utilisateur.json');
 $js=json_decode($js,true);
 
 foreach($js as $value){

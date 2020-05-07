@@ -12,7 +12,7 @@
                 if ($user["profil"]==="admin"){
                     return "accueil";
                 }else{
-                    return "jeux";
+                    return "jeux&suite=1";
                 }
             }
         }
@@ -58,16 +58,16 @@
     }
 
     function is_number($char){
-        for ($i=0; $i<my_strlen($char); $i++){
-            if (!(is_entier($char[$i]))){
+        for($i=0; $i<my_strlen($char); $i++){
+            if(!is_entier($char[$i])){
                 return false;
             }
         }
-        return ($char>0);
+        return true;
     }
 
-    function is_entier($char){
-        return ($char>='0' && $char<='9');
+    function is_entier($car){
+        return ($car >= '0' && $car <= '9');
     }
 
 
@@ -97,7 +97,10 @@
     }
 
     function clik_checkbox(){
-        
+        var type_reponse=document.getElementId("type_reponse").value;
+       if(type_roponse=="texte") {
+           return true;
+       }else{
         var form=document.getElementById("form");
         var checks=form.getElementsByClassName("check")
         for(let chk of checks){
@@ -107,6 +110,8 @@
         }
         document.getElementById("error-3").innerText="cocher d'abord!";
         return false;
+       }
+       
     }
 
 

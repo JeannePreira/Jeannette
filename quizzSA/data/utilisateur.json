@@ -55,11 +55,11 @@
     },
     {
         "nom":"PREIRA",
-        "prenom":"Jeannetta",
+        "prenom":"Jeannette",
         "login":"jeannetta",
         "password":"guepard",
         "profil":"admin",
-        "photo":"/quizzSA/public/images/imagejs.jpg",
+        "photo":"/quizzSA/public/images/femme.jpg",
         "score":"254"
     },
     {

@@ -1,1 +1,124 @@
-[]
+[
+    {
+        "question": "les langages web",
+        "nombre_de_point": "2",
+        "type_reponse": "multiple",
+        "reponse": {
+            "1": "HTML",
+            "2": "R",
+            "3": "JAVA"
+        },
+        "reponse_vrai": [
+            "HTML",
+            "JAVA"
+        ]
+    },
+    {
+        "question": "D'ou vient le Corona",
+        "nombre_de_point": "3",
+        "type_reponse": "simple",
+        "reponse": {
+            "1": "Chine",
+            "2": "Italie"
+        },
+        "reponse_vrai": [
+            "Chine"
+        ]
+    },
+    {
+        "question": "les langages web",
+        "nombre_de_point": "2",
+        "type_reponse": "multiple",
+        "reponse": {
+            "1": "HTML",
+            "2": "R",
+            "3": "JAVA"
+        },
+        "reponse_vrai": [
+            "HTML",
+            "JAVA"
+        ]
+    },
+    {
+        "question": "D'ou vient le Corona",
+        "nombre_de_point": "3",
+        "type_reponse": "simple",
+        "reponse": {
+            "1": "Chine",
+            "2": "Italie"
+        },
+        "reponse_vrai": [
+            "Chine"
+        ]
+    },
+    {
+        "question": "les langages web",
+        "nombre_de_point": "2",
+        "type_reponse": "multiple",
+        "reponse": {
+            "1": "HTML",
+            "2": "R",
+            "3": "JAVA"
+        },
+        "reponse_vrai": [
+            "HTML",
+            "JAVA"
+        ]
+    },
+    {
+        "question": "D'ou vient le Corona",
+        "nombre_de_point": "3",
+        "type_reponse": "simple",
+        "reponse": {
+            "1": "Chine",
+            "2": "Italie"
+        },
+        "reponse_vrai": [
+            "Chine"
+        ]
+    },
+    {
+        "question": "les langages web",
+        "nombre_de_point": "2",
+        "type_reponse": "multiple",
+        "reponse": {
+            "1": "HTML",
+            "2": "R",
+            "3": "JAVA"
+        },
+        "reponse_vrai": [
+            "HTML",
+            "JAVA"
+        ]
+    },
+    {
+        "question": "D'ou vient le Corona",
+        "nombre_de_point": "3",
+        "type_reponse": "simple",
+        "reponse": {
+            "1": "Chine",
+            "2": "Italie"
+        },
+        "reponse_vrai": [
+            "Chine"
+        ]
+    },
+    {
+        "question": "donner un langage web",
+        "nombre_de_point": "5",
+        "type_reponse": "texte",
+        "reponse": "html"
+    },
+    {
+        "question": "toi",
+        "nombre_de_point": "1",
+        "type_reponse": "simple",
+        "reponse": {
+            "1": "hhj",
+            "2": "jh"
+        },
+        "reponse_vrai": [
+            "hhj"
+        ]
+    }
+]

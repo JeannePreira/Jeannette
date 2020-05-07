@@ -12,16 +12,7 @@
                             echo " ";
                         }else{
                             
-                            foreach($js as $value){
-                                if($value["profil"]="joueur"){
-                                    $joueur[]=$value;
-                                }
-                            }
-                            $score=[];
-                            foreach($joueur as $key=>$value){
-                                array_push($score,$value['score']);
-                            }
-                            
+                           
                             ?>
                             
                          
