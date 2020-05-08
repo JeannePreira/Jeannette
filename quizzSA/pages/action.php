@@ -1,7 +1,8 @@
 <?php
 session_start();
+
 $page=(int)$_GET['suite'];
-$questionActuelle=(int)$_GET['question'];
+$questionActuelle=(int)$_GET['question'];//la question dans la position acctuelle
 
 $questions=file_get_contents("../data/question.json");
 $questions=json_decode($questions,true);
@@ -21,10 +22,36 @@ if (isset($_POST['check'])){
         }
         $_SESSION['check'][$page-1][]=$reponse_utilisateur;
     }
-   // if($nbre_rep_utilisateur === $nombre_de_reponses_exacte){
-        
-   // }
-}
+    //vérifier si si l'utillisateur a trouvé
+    if($nbre_rep_utilisateur === $nombre_de_reponses_exacte){
+        $nbre_de_point=(int)$questions[$questionActuelle]['nombre_de_point'];
+     }
+}else
+    if(isset($_POST['radio'])){
+    $reponse_utilisateur=$_POST['radio'];
+    $reponses_exactes=$questions[$questionActuelle]['reponse_vrai'];
+   
+    $nombre_de_reponses_exacte=count($reponses_exactes);
 
-//header("Location:../?lien=jeux&suite=$page");
-var_dump($_SESSION['check'][$page-1]);
+    if($reponse_utilisateur===$reponses_exactes[0]){
+        $nbre_de_point=(int)$questions[$questionActuelle]['nombre_de_point'];
+      }
+    
+    
+
+        $_SESSION['radio'][$page-1]=$reponse_utilisateur;
+
+}else
+if(isset($_POST['texte'])){
+    $reponse_utilisateur=$_POST['texte'];
+
+    $reponse_exacte=$questions[$questionActuelle]['reponse'];//
+
+    $_SESSION['texte'][$page-1]=$reponse_utilisateur;
+
+    if($reponse_utilisateur===$reponse_exacte){
+        $nbre_de_point=(int)$questions[$questionActuelle]['nombre_de_point'];
+    }
+    
+}
+header("Location:../?lien=jeux&suite=$page");

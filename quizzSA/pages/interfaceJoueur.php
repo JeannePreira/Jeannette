@@ -17,8 +17,6 @@ is_connect();
  
 
 
-
-
 <div class="up-play">
     <div class="profil">
 
@@ -37,26 +35,25 @@ is_connect();
 
     <div class="right">
     
-        
-
-            <?php if($_GET['suite']<=$_SESSION['number']) {
-            
-            echo '<div class="quizz"><p>Question'.' '?><?=$_GET['suite']?>
-
-            <?php  echo '/'.$_SESSION['number']?></p></div>
-                        
-            <?php
-                $data=file_get_contents("./data/question.json");
-                $table=json_decode($data,true);
+        <?php
+            $data=file_get_contents("./data/question.json");
+            $table=json_decode($data,true);
                             
-                $max=$_GET['suite']*1;
-                $min=$max-1;
-                $a=(int)$_GET['suite']+1; ?> 
-               <?php for($cpt=$min;$cpt<$max;$cpt++){   
-                    if(array_key_exists($cpt,$table)){?>
-                        <div class="head-right">
-                               <?php echo'<div class="rep-quizz"><p>'.$table[$cpt]['question'].'</p></div>';   ?>                          
-                        </div> 
+            $max=$_GET['suite']*1;
+            $min=$max-1;
+            $a=(int)$_GET['suite']+1;  
+            for($cpt=$min;$cpt<$max;$cpt++){   
+                if(array_key_exists($cpt,$table)){?>
+
+                    <div class="head-right">
+
+                        <?php
+                            if($_GET['suite']<=$_SESSION['number']) {
+                                echo '<div class="quizz"><p>Question'.' '.$_GET['suite']. '/'.$_SESSION['number'].'</p></div>';
+                                echo'<div class="rep-quizz"><p>'.$table[$cpt]['question'].'</p></div>';
+                        ?>    
+
+                    </div> 
                     
         <div class="bloc">
      
@@ -67,47 +64,73 @@ is_connect();
                         $reponse=$table[$cpt]['reponse'];
                         if($table[$cpt]['type_reponse']=='simple'){
                             for($i=1;$i<=count($reponse);$i++){
-                                echo  "<input  type='radio' name='radio'  value='<?= $reponse[$i] ?>' >";
-                                echo '<label>'.$reponse[$i].'</label><br>';
+                                $est_cocher=false;
+                                if(isset($_SESSION['radio'][$a-1])){
+                                
+                                    if($reponse[$i]===$_SESSION['radio'][$a-1]){
+                                        $est_cocher=true; 
+                                    }
+                                    
+                                }
+                                if($est_cocher){
+                                    echo  "<input  type='radio' name='radio'  value='$reponse[$i]' checked >";
+                                    echo '<label>'.$reponse[$i].'</label><br>';
+                                }else{
+                                    echo  "<input  type='radio' name='radio'  value='$reponse[$i]' >";
+                                    echo '<label>'.$reponse[$i].'</label><br>';
+                                }
+                                
                             }
                         }else
                             if($table[$cpt]['type_reponse']=='multiple'){
-                                var_dump(@$_SESSION['check']);
-                                var_dump($a);
+                                
                                 for($j=1;$j<=count($reponse);$j++){
                                     $est_cocher=false;
                                     if(isset($_SESSION['check'][$a-1])){
                                         foreach ($_SESSION['check'][$a-1] as  $value) {
-                                            if($reponse[$j]==$value){
+                                            if($reponse[$j]===$value){
                                                 $est_cocher=true; 
                                             }
                                         }
                                     }
                                     if($est_cocher){
-                                        echo  "<input  type='checkbox' name='check[]'  value='<?= $reponse[$j] ?>' checked >";
+                                        echo  "<input  type='checkbox' name='check[]'  value='$reponse[$j]' checked >";
                                         echo '<label>'.$reponse[$j].'</label><br>';
                                     }else{
-                                        echo  "<input  type='checkbox' name='check[]'  value='<?= $reponse[$j] ?>' >";
+                                        echo  "<input  type='checkbox' name='check[]'  value='$reponse[$j]' >";
                                         echo '<label>'.$reponse[$j].'</label><br>';
                                     }
                                     
                                 }
                             }else
                                 {
-                                echo  '<input  type="text" name="texte"  value="" >';
+                                    if (isset($_SESSION['texte'][$a-1])){
+                                        echo  "<input  type='text' name='texte'  value='".$_SESSION['texte'][$a-1]."' >";
+                                    
+                                    }else{
+                                        echo  "<input  type='text' name='texte' >";
+                                    }
+                               
                                  
                                 } ?>
+                            </div>
 
+                            <div class="bloc2">
+
+                                     <div class="point"> <?php echo $table[$cpt]['nombre_de_point'].'pts';?></div>
+                 
+
+                                     </div>
                             <div class="nav">
 
                                     <?php   
                                         
                                             
-                                        if($_GET['suite']<($_SESSION['number'])){
+                                        if($_GET['suite'] < $_SESSION['number']){
                                             echo"<div class='suivant'><button>suivant</button></div>";
                                         }else
-                                            if($_GET['suite']===($_SESSION['number'])){
-                                                echo"<div class='suivant'><a href='index.php?lien=jeux&suite=$a'><button>Terminer</button></a></div>";
+                                            if($_GET['suite'] == $_SESSION['number']){
+                                                echo"<div class='suivant'><button>Terminer</button></div>";
                                             }
 
                                             if($_GET['suite']>1){
@@ -119,19 +142,16 @@ is_connect();
                                             
                                     <?php }  ?> 
                             </div>
+                        
                     </form>
             </div>
 
-            <div class="bloc2">
-
-                 <div class="point"> <?php echo $table[$cpt]['nombre_de_point'].'pts';?></div>
-                 <?php  }                                   
+            
+            <?php  }                                   
                 }?>
-
-            </div>
             
        
-        </div>                    
+                            
             
                
     </div>
@@ -274,14 +294,14 @@ function rtn() {
     background-color: #f8fdfd;
     border-radius: 0px 0px 5px 5px;
     position:relative;
-    top:15px;
+    top:0px;
     left: 40px;
 
             }
             .right{
                 width:70%;
                 height:420px;
-                border:1px solid blue;
+                border:1px solid #51bfd0;
                 float:left;
                 background-color: white;
                 border-radius:5px;
@@ -291,15 +311,17 @@ function rtn() {
             .head-right{
                 width:98%;
                 height:80px;
-                background-color: #d7e0e0;
+                background-color:#DCDCDC;
                 border-radius:5px;
-                margin:-5px 2px 0px 10px; 
+                position:relative;
+                bottom:15px;
+                margin:0px 2px 0px 10px; 
             }
             .quizz p{
                 width:20%;
                 color:black;
                 position:relative;
-                border-bottom:1px solid gray;
+                border-bottom:1px solid black;
                 left:280px;
                 top:5px;
                 font-size:23px;
@@ -308,7 +330,8 @@ function rtn() {
             .rep-quizz p{
                 position:relative;
                 left:280px;
-                font-size:20px;
+                bottom:10px;
+                font-size:25px;
                 
             }
             .body-right{
@@ -321,15 +344,21 @@ function rtn() {
             }
             .bloc1{
                 float:left;
+                position:relative;
+                top:50px;
+                left:200px;
+                font-size:30px;
             }
             .bloc2{
                 width:5%;
                 float:right;
                 position:relative;
-                right:200px;
-                top:-50px;
-                background-color: gray;
+                right:80px;
+                top:20px;
+                background-color: #DCDCDC;
                 border-radius:5px;
+                padding:5px;
+                font-size:25px;
             }
             .rep{
                 padding:5px;
@@ -337,25 +366,25 @@ function rtn() {
             .nav{
                 width:98%;
                 position:relative;
-                top:180px;
+                top:270px;
             }
             .suivant button{
                 width:18%;
-                position:relative;
-                top:130px;
+                position:absolute;
+                right:0px;
                 float:right;
                 padding:10px;
-                background-color: blue;
+                background-color:#51bfd0;
                 border-radius:5px;
             }
             .precedent{
                 width:18%;
-                position:relative;
-                top:130px;
+                position:absolute;
+                left:10px;
                 float:left;
                 padding:10px;
                 border-radius:5px;
-                background-color: gray;
+                background-color:#DCDCDC;
                 
             }
             .left{
