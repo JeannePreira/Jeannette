@@ -137,98 +137,57 @@
 
 ?>
 
-    <?php
-        if (isset($_SESSION['user']['prenom']) && ($_SESSION['user']['nom'])){
-    ?>
-                <div class="titre_1">
-                    <h1><strong>S'INSCRIRE</strong></h1>
-                    <br>
-                    <p>Pour proposer des quizz</p>
-                </div>
-
-                <div class="ligne_droite_admin">
-                    <hr>
-                </div>
-    <?php
-    }else{
-    ?>
+    
             <div class="inscription_joueur">
                 <div class="titre_2">
-                    <h1><strong>S'INSCRIRE</strong></h1>
-                    <br>
+                    <h2>S'INSCRIRE</h2>
                     <p>Pour tester votre niveau de culture général</p>
+                    
                 </div>
 
-                <div class="ligne_droite_joueur">
-                    <hr>
-                </div>
-    <?php
-    }
-    ?>
-            <div class="formulaire">
+                
+  
+           
                 <form method="POST" action="" id="form-inscription" enctype="multipart/form-data">
-                
-                    <div class="label_prenom_utilisateur">
-                        <label for="prenom" name="prenom">Prenom</label> <br>
-                        <input type="text" name="prenom" id="prenom" error="error-3" placeholder="Aaaaa" value="<?php if(isset($_POST['prenom'])) { echo $_POST['prenom']; } ?>">
-                    </div>
-                    <br>
-                    <br>
                     
+                    <div class="input_inscription">
                     
+                        <div class="login_line">
+                            <label for="prenom" name="prenom">Prenom</label> <br>
+                            <input type="text" name="prenom" id="prenom" error="error-3" placeholder="Aaaaa" value="<?php if(isset($_POST['prenom'])) { echo $_POST['prenom']; } ?>">
+                        </div>
 
-                    <div class="label_nom_utilisateur">
-                        <label for="nom" name="nom">Nom</label>
-                        <input type="text" name="nom" id="nom" error="error-4" placeholder= "BBBBB" value="<?php if(isset($_POST['nom'])) { echo $_POST['nom']; } ?>">
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    
-                
-                    <div class="label_login_utilisateur">
-                        <label for="login" name="login">Login</label>
-                        <input type="text" name="login" id="login" error="error-5" placeholder= "aaabb"value="<?php if(isset($_POST['login'])) { echo $_POST['login']; } ?>">                        
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    
-                    
+                        <div class="login_line">
+                            <label for="nom" name="nom">Nom</label><br>
+                            <input type="text" name="nom" id="nom" error="error-4" placeholder= "BBBBB" value="<?php if(isset($_POST['nom'])) { echo $_POST['nom']; } ?>">
+                        </div>
+                        
+                        <div class="login_line">
+                            <label for="login" name="login">Login</label><br>
+                            <input type="text" name="login" id="login" error="error-5" placeholder= "aaabb"value="<?php if(isset($_POST['login'])) { echo $_POST['login']; } ?>">                        
+                        </div>
+                        
+                        <div class="login_line">
+                            <label for="password" name="password">Password</label><br>
+                            <input type="password" name="password" id="password" error="error-6" placeholder= "• • • • • • • • • • • • • • • • •" value="<?php if(isset($_POST['password'])) { echo $_POST['password']; } ?>">
+                        </div>
+    
+                        <div class="login_line">
+                            <label for="confirm" name="confirm">Confirm Password</label><br>
+                            <input type="password" name="confirm" id="confirm" error="error-7" placeholder= "• • • • • • • • • • • • • • • • •" value="<?php if(isset($_POST['confirm'])) { echo $_POST['confirm']; } ?>">
+                        </div>
+                        
+                        <div class="envoi_fichier">
+                                <input type="file" name="monfichier" id="imag" onchange="previewImage(event)"/>
+                        </div>
 
-                    <div class="label_password_utilisateur">
-                        <label for="password" name="password">Password</label>
-                        <input type="password" name="password" id="password" error="error-6" placeholder= "• • • • • • • • • • • • • • • • •" value="<?php if(isset($_POST['password'])) { echo $_POST['password']; } ?>">
+                        <div class="submit_creer_compte_utilisateur">
+                            <a href="interface_joueur.php">
+                                <input type="submit" name="creer_compte" value="Creer un compte">
+                            </a>
+                        </div>
+                        
                     </div>
-                    <br>
-                    <br>
-                    
-                    
-                    <div class="label_confirm_utilisateur">
-                        <label for="confirm" name="confirm">Confirm Password</label>
-                        <input type="password" name="confirm" id="confirm" error="error-7" placeholder= "• • • • • • • • • • • • • • • • •" value="<?php if(isset($_POST['confirm'])) { echo $_POST['confirm']; } ?>">
-                    </div>
-                    <br>
-                    
-
-                    <div class="envoi_fichier">
-                            <input type="file" name="monfichier" id="imag" onchange="previewImage(event)"/>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                    <div class="submit_creer_compte_utilisateur">
-                        <a href="interface_joueur.php">
-                            <input type="submit" name="creer_compte" value="Creer un compte">
-                        </a>
-                    </div>
-                    <br>
-
                 </form>
                 <span class="erreur"><strong>   <?php if (isset($msg_erreur)){ echo  $msg_erreur;} ?>   </strong></span>
 
@@ -268,7 +227,7 @@
             }
         ?>
 
-    </div>
+    
 </div>
     <script>
     function previewImage(event)
@@ -327,71 +286,59 @@
 
 
 <style>
-.formulaire{
-    width:70%;
-    height:600px;
+.inscription_joueur{
+    width:90%;
+    height:480px;
     background-color:white;
     border-radius:5px;
-    border:2px red solid;
-    margin-left:150px;
-}
-.inscription_joueur {
-    float:left;
-    width: 85%;
-    height: 100%;
-    margin-top: 0%;
-    left: 7.5%;
-    position: relative;
-    background-color: white;
+    border:1px solid white;
+    margin-left:50px;
 }
 
-#form-inscription{
-    float: right;
-    right: 67%;
-    width: 30%;
-    top: 15%;
-    height: 350px;
-    position: absolute;
+.titre_2{
+    width:60%;
+    height:50px;
+    border-bottom:2px solid #C0C0C0;
+}
+.titre_2 h2{
+    position:relative;
+    bottom:40px;
+    left:10px;
+    top:-12px;
+}
+.titre_2 p{
+    font-size:20px;
+    position:relative;
+    bottom:35px;
+    left:10px;
+}
+.login_line{
+    margin-left:20px;
+}
+.login_line label{
+    
+    margin:5px;
+}
+.login_line input{
+    width:50%;
+    height:40px;
+    border-radius:5px;
 }
 
-.titre_1 {float: left; width: 30%; height: 15%;margin-top: 0%; margin-left: 3%; position: relative;}
-.titre_1 h1 {float: left; font-size: 20px;margin-top: 0%; margin-bottom: 0%; color: black;}
-.titre_1 p {float: left; font-size: 14px; margin-top: 0%; color: rgb(88, 87, 87);}
-
-.titre_2 {float: left; width: 25%; height: 15%; top: 20%; margin-left: 3%; position: relative;}
-.titre_2 h1 {float: left; font-size: 20px; color: black; }
-.titre_2 p {float: left; font-size: 14px; bottom: -10%; color: rgb(88, 87, 87); position: relative;}
-
-.ligne_droite_admin {float: left; width: 40%; margin-top: 6%; right: 30%; color: rgb(88, 87, 87); position: relative;}
-
-.ligne_droite_joueur {float: left; width: 40%; margin-top: 6%; right: 25%; color: rgb(88, 87, 87); position: relative;}
-
-
-.label_prenom_utilisateur {float: left; width: 100%; height: 55px; right: 0%; top: 20%; left: 35%; position: relative;}
-.label_prenom_utilisateur label {font-size: 15px; color: rgb(88, 87, 87);}
-.label_prenom_utilisateur input {width: 100%; height: 60%; border: 1px solid rgb(88, 87, 87); border-radius: 5px;}
-
-.label_nom_utilisateur {float: left;width: 100%; height: 55px; right: 0%; top: 20%; margin-top: 0%; margin-left:35%; position: relative;}
-.label_nom_utilisateur label {float: left; font-size: 16px; color: rgb(88, 87, 87);}
-.label_nom_utilisateur input {float: left; width: 100%; height: 60%; border: 1px solid rgb(88, 87, 87); border-radius: 5px;}
-
-.label_login_utilisateur {float: left; width: 100%; height: 55px; right: 0%; top: 20%; margin-top: 3%; margin-left:35%; position: relative;}
-.label_login_utilisateur label {float: left; font-size: 16px; color: rgb(88, 87, 87);}
-.label_login_utilisateur input {float: left; width: 100%; height: 60%; border: 1px solid rgb(88, 87, 87); border-radius: 5px;}
-
-.label_password_utilisateur {float: left; width: 100%; height: 55px; right: 0%; top: 20%; margin-top: 0%; margin-left:35%; position: relative;}
-.label_password_utilisateur label {float: left; font-size: 16px; color: rgb(88, 87, 87);}
-.label_password_utilisateur input {float: left; width: 100%; height: 60%; border: 1px solid rgb(88, 87, 87); border-radius: 5px;}
-
-.label_confirm_utilisateur {float: left; width: 100%; height: 55px; right: 0%; top: 20%; margin-top: 0%; margin-left:35%; position: relative;}
-.label_confirm_utilisateur label {float: left; font-size: 16px; color: rgb(88, 87, 87);}
-.label_confirm_utilisateur input {float: left; width: 100%; height: 60%; border: 1px solid rgb(88, 87, 87); border-radius: 5px;}
-
-.envoi_fichier {width: 20%; height: 5%; margin-left: 50%; margin-top: 5%; top:100px; position: relative;}
-
-.submit_creer_compte_utilisateur {width: 30%; height: 7%; margin-left: 80%; padding:5px; margin-top: 20%; border-radius: 8px; position: relative;}
-.submit_creer_compte_utilisateur input {float: left; width: 100%; height: 100%;  border-radius: 5px; background-color: rgb(61, 191, 196);}
-
+.envoi_fichier{
+    position:relative;
+    top:15px;
+    left:50px;
+}
+.submit_creer_compte_utilisateur{
+    position:relative;
+    top:15px;
+    left:150px;
+}
+.submit_creer_compte_utilisateur input{
+    background-color:pink;
+    padding:10px;
+}
 .erreur {margin-top: 28%; margin-left: 10%; color: red;}
 
 .avatar-inscription-admin {
@@ -422,21 +369,21 @@
     float: left; 
     width : 150px; 
     height : 150px; 
-    left: 25%; 
-    margin-top: 0.5%; 
+    position:relative;
+    left:220px;
+    top:20px; 
     border: none; 
-    -moz-border-radius : 75px; 
-    -webkit-border-radius : 75px; 
+     
     border-radius : 75px;
     border: 2px solid darkturquoise;
 }
 
 .nom_prenom_avatar p{
     float: left;
-    bottom: 0%;
-    right: 68%;
+    position:relative;
+    left:130px;
+    top:180px;
     text-align: center;
-    position: absolute;
     color: black;
 }
 </style>
