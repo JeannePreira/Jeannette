@@ -24,7 +24,7 @@ if (isset($_POST['check'])){
     }
     //vérifier si si l'utillisateur a trouvé
     if($nbre_rep_utilisateur === $nombre_de_reponses_exacte){
-        $nbre_de_point=(int)$questions[$questionActuelle]['nombre_de_point'];
+        $_SESSION['score']=$_SESSION['score']+(int)$questions[$questionActuelle]['nombre_de_point'];
      }
 }else
     if(isset($_POST['radio'])){
@@ -34,7 +34,8 @@ if (isset($_POST['check'])){
     $nombre_de_reponses_exacte=count($reponses_exactes);
 
     if($reponse_utilisateur===$reponses_exactes[0]){
-        $nbre_de_point=(int)$questions[$questionActuelle]['nombre_de_point'];
+
+        $_SESSION['score']=$_SESSION['score']+(int)$questions[$questionActuelle]['nombre_de_point'];
       }
     
     
@@ -50,8 +51,15 @@ if(isset($_POST['texte'])){
     $_SESSION['texte'][$page-1]=$reponse_utilisateur;
 
     if($reponse_utilisateur===$reponse_exacte){
-        $nbre_de_point=(int)$questions[$questionActuelle]['nombre_de_point'];
+        $_SESSION['score']=$_SESSION['score']+(int)$questions[$questionActuelle]['nombre_de_point'];
     }
     
 }
-header("Location:../?lien=jeux&suite=$page");
+
+if(isset($_POST['terminer'])){
+    header("Location:recapulation.php");
+}
+else
+{
+    header("Location:../?lien=jeux&suite=$page");
+}

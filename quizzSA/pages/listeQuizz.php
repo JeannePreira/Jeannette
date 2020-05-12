@@ -1,6 +1,31 @@
 
          
-           
+       <?php 
+        require_once('./traitement/fonctions.php') ;
+        if(isset($_POST['ok'])){
+                if(!is_number($_POST['number']) || $_POST['number']<5){
+                    echo "Entrer un nombre supérieur ou égal à 5";
+                }else{
+                    
+
+                    $_SESSION['number']=$_POST['number'];
+                    $message=array();
+                    $message["nombre_par_jeu"]=$_SESSION['number'];
+                    $tab=file_get_contents('./data/interface_joueur.json');
+                    $tab=json_decode($tab,true);
+                    
+                    $tab=$message;
+                    $tab=json_encode($tab);
+                    file_put_contents('./data/interface_joueur.json',$tab);
+                    
+                    
+                  
+                     
+                }
+            
+        }
+       
+        ?>        
                   
         
                
@@ -11,7 +36,7 @@
                <form method="post" id='validation'>
                    <label for='number'>Nbre de question/Jeux</label>
                    <input type="text" name="number" id="number" error="error" class="number"
-                   value="<?= $tab['nombre_par_jeu'] ?>">
+                   value="<?= $_SESSION['number'] ?>">
                    <input type="submit" value="OK" class="ok" name='ok' id="btn_envoie" >
                    <span class='line_error' id='error'></span><br>
                </form>
@@ -21,35 +46,7 @@
                 <div class="contenu_liste_quizz_body">
                    
                 
-                <?php 
-        require_once('./traitement/fonctions.php') ;
-        if(isset($_POST['ok'])){
-                if(!is_number($_POST['number']) || $_POST['number']<5){
-                    echo "Entrer un nombre supérieur ou égal à 5";
-                }else{
-                    
-
- $_SESSION['number']=$_POST['number'];
-
-var_dump($_SESSION['number']);
-
-                   /* $message=array();
-                    $message["nombre_par_jeu"]=$_POST["number"];*/
-                    $tab=file_get_contents('../data/interface_joueur.json');
-                    $tab=json_decode($tab,true);
-                    
-                   // $tab=$message;
-                   // $tab=json_encode($tab);
-                    //file_put_contents('../data/interface_joueur.json',$tab);
-                    
-                    
-                  
-                     
-                }
-            
-        }
-       
-        ?>   
+               
 
 <?php
                             $data=file_get_contents("./data/question.json");
@@ -168,7 +165,7 @@ document.getElementById("validation").addEventListener("submit", function(e){
    margin-left:200px;
 }
 .number{
-    width:500px;
+    width:50px;
 }
 .ok{
     background-color:blue;

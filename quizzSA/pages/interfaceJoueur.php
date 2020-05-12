@@ -27,7 +27,7 @@ is_connect();
         
     <div class="up-play-titre1"> <h3>BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ</h3></div>
     <div class="up-play-titre2"> <h3>JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE</h3></div>
-    <div class="up-play-disconnexion"><a href="index.php/statut=logout">Déconnexion</a></div> 
+    <div class="up-play-disconnexion"><a href="index.php?statut=logout">Déconnexion</a></div> 
 
 </div>
 
@@ -130,7 +130,9 @@ is_connect();
                                             echo"<div class='suivant'><button>suivant</button></div>";
                                         }else
                                             if($_GET['suite'] == $_SESSION['number']){
-                                                echo"<div class='suivant'><button>Terminer</button></div>";
+                                                echo"<div class='suivant'><button name='terminer'>Terminer</button></div>";
+                                                //ca marche cette redirection??
+                                                //l'emplacement n'est pas bon!
                                             }
 
                                             if($_GET['suite']>1){
